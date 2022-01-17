@@ -1,4 +1,3 @@
-library(shiny)
 library(rvest)
 library(dplyr)
 
@@ -20,14 +19,14 @@ food_name$food_name[132] <- paste("Pizza", food_name$food_name[132])
 food_name$food_name[136] <- paste("Pasta & Spaghetti -", food_name$food_name[136])
 food_name$food_name[137] <- paste("Pasta & Spaghetti -", food_name$food_name[137])
 
-# Removing the unnecessary value in the Dataset
+# Removing the unnecessary value in the dataset
 food_name <- data.frame(food_name)
 food_name <- food_name[-c(1, 2, 3, 4, 19, 20, 21, 35, 36, 37, 42, 43, 44, 54, 55, 56, 61, 62, 63, 64, 81, 117, 118, 126, 127, 128, 133, 134, 
                           135, 138, 139, 140, 147, 148, 149, 165, 182, 187, 188, 189, 190, 191), ]
 
 food_calories <- data.frame(food_calories)
 food_calories <- food_calories[-c(1, 2, 3, 4, 19, 20, 21, 35, 36, 37, 42, 43, 44, 54, 55, 56, 61, 62, 63, 64, 81, 117, 118, 126, 127, 128, 133, 134, 
-                                  135, 138, 139, 140, 147, 148, 149, 165, 182, 187, 188, 189, 190, 191), ]
+                          135, 138, 139, 140, 147, 148, 149, 165, 182, 187, 188, 189, 190, 191), ]
 
 food_amount <- data.frame(food_amount)
 food_amount <- food_amount[-c(1, 2, 3, 4, 19, 20, 21, 35, 36, 37, 42, 43, 44, 54, 55, 56, 61, 62, 63, 64, 81, 117, 118, 126, 127, 128, 133, 134, 
@@ -37,63 +36,3 @@ Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIE
 
 
 
-
-
-shinyServer(function(input, output) {
-
-  ## This will be the user's info in Info Box
-  output$usersName <- renderInfoBox({
-    infoBox(
-      "User's Name", input$userName, icon = icon("user"), color = "blue", fill = TRUE
-    )
-  })
-  output$usersWeight <- renderInfoBox({
-    infoBox(
-      "User's Weight", paste(input$userWeight, "KG"), icon = icon("weight"), color = "purple", fill = TRUE
-    )
-  })
-  output$usersHeight <- renderInfoBox({
-    infoBox(
-      "User's Height", paste(input$userHeight, "CM"), icon = icon("ruler-vertical"), color = "yellow", fill = TRUE
-    )
-  })
-  output$usersAge <- renderInfoBox({
-    infoBox(
-      "User's Age", paste(input$userAge, "Years"), icon = icon("sort-numeric-down"), color = "fuchsia", fill = TRUE
-    )
-  })
-  output$usersGender <- renderInfoBox({
-    gender <- switch(input$userGender,
-                     male = "Male",
-                     female = "Female")
-    infoBox(
-      "User's Gender", gender, icon = icon("venus-mars"), color = "teal", fill = TRUE
-    )
-  })
-  output$usersBMI <- renderInfoBox({
-    BMI <- input$userWeight/((input$userHeight)/100)^2
-    if(BMI < 18.5){
-      colourChoosen <- "blue"
-      status <- "Underweight"
-    }else if(BMI>=18.5 && BMI<=24.9){
-      colourChoosen <- "green"
-      status <- "Healthy"
-    }else if(BMI>=25.0 && BMI<=29.9){
-      colourChoosen <- "orange"
-      status <- "Overweight"
-    }else{
-      colourChoosen <- "red"
-      status <- "Obesity"
-    }
-    
-    infoBox(
-      "User's BMI", sprintf(BMI, fmt = '%#.2f'), status, icon = icon("balance-scale"), color = colourChoosen, fill=TRUE
-    )
-  })
-  
-  
-  
-  
-  
-
-})
