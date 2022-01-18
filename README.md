@@ -38,4 +38,7 @@ _**The app need to able to collect data and summarize in a graph form :**_
 #### The data is based on this website :
 https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime
 
+#### Amount Calorie needed
+https://www.healthline.com/nutrition/how-many-calories-per-day#average-needs
+
 
