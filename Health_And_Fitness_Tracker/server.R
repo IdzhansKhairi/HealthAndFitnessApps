@@ -1,8 +1,10 @@
 library(shiny)
 library(rvest)
 library(dplyr)
+library(ggplot2)
+library(DT)
 
-# Web Scrapping from a website collecting all list of foods in Malaysia and its calories
+## Web Scrapping from a website collecting all list of foods in Malaysia and its calories
 link = "https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime"
 page = read_html(link)
 
@@ -39,7 +41,7 @@ Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIE
 
 
 
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   ## This will be the user's info in Info Box
   output$usersName <- renderInfoBox({
@@ -90,6 +92,28 @@ shinyServer(function(input, output) {
       "User's BMI", sprintf(BMI, fmt = '%#.2f'), status, icon = icon("balance-scale"), color = colourChoosen, fill=TRUE
     )
   })
+  
+  ## Code here will display the things in first panel box
+  # Make reactive to store values
+  food_table <- shiny::reactiveValues()
+  
+  #Get singular food
+  food_df <- eventReactive(input$foodChoosen, {
+    
+    food_df <- Food_Calories_List[Food_Calories_List$FOOD == input$foodChoosen, "FOOD"] 
+    
+  })
+  
+  update <- observeEvent(input$removeFood, {
+    isolate(food_table$Food_Calories_List <- food_table$Food_Calories_List[-(nrow(food_table$Food_Calories_List)), ])
+  })
+  
+  update <- observeEvent(input$submitFood, {
+    isolate(food_table$Food_Calories_List[nrow(food_table$Food_Calories_List) + 1,] )
+  })
+  
+  output$food_table <- DT::renderDataTable(Food_Calories_List,  
+                                       rownames=FALSE, options = list(pageLength = 5))
   
   
   

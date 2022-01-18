@@ -3,6 +3,7 @@ library(shinydashboard)
 library(rvest)
 library(dplyr)
 library(DT)
+library(ggplot2)
 
 # Web Scrapping from a website collecting all list of foods in Malaysia and its calories
 link = "https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime"
@@ -76,6 +77,7 @@ shinyUI(fluidPage(
                  
                  sliderInput("activityDuration", "Time of Activity (Minutes) : ", 0, 240, 30),
                  submitButton(text = "Apply Changes"))
+        
       )
         
     ),
@@ -99,10 +101,16 @@ shinyUI(fluidPage(
       ),
       fluidRow(
         
-        box(title = "Food Consumed Today",
-            solidHeader = TRUE,
-            collapsible = TRUE,
-            DTOutput('food_lists'))
+        tabBox(
+          title = tagList(shiny::icon("hamburger"), "Calories Consumed"),
+          tabPanel(title = "Food Consumed",
+                   div(DT::DTOutput("food_table"), style = "font-size: 70%;")),
+          
+          tabPanel(title = "Calories Consumed",
+                   textOutput("value")),
+          
+          tabPanel("Percentage Calories Consumed", plotOutput("plot_caloriesPercent"))
+        )
         
       )
     )
