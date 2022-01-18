@@ -104,10 +104,11 @@ shinyUI(fluidPage(
         tabBox(
           title = tagList(shiny::icon("hamburger"), "Calories Consumed"),
           tabPanel(title = "Food Consumed",
-                   div(DT::DTOutput("food_table"), style = "font-size: 70%;")),
+                   div(DT::DTOutput("food_table"), style = "font-size: 80%;")),
           
           tabPanel(title = "Calories Consumed",
-                   textOutput("value")),
+                   strong(h2(textOutput("gendercalory"))),
+                   div(dataTableOutput("caloryneed"), style = "font-size: 80%")),
           
           tabPanel("Percentage Calories Consumed", plotOutput("plot_caloriesPercent"))
         )

@@ -117,6 +117,27 @@ shinyServer(function(input, output, session) {
   
   
   
+  ## Code here will display calories needed. If gender chosen is men or woman
+  output$gendercalory <- renderText({
+    
+    genderChoose <- switch(input$userGender, 
+                           male = "Men Daily Calory Requirement",
+                           female = "Woman Daily Calorie Requirement")
+  })
+  output$caloryneed <- renderDataTable({
+    
+    genderChoose <- switch(input$userGender,
+                           male = data.frame(
+                             Age_Range = c("19 - 30 Years", "31 - 59 Years", "60+ Years"),
+                             Calories_Needed = c("2000 - 2400 Calories", "1800 - 2200 Calories", "1600 - 2000 Calories")
+                           ),
+                           female = data.frame(
+                             Age_Range = c("19 - 30 Years", "31 - 59 Years", "60+ Years"),
+                             Calories_Needed = c("2400 - 3000 Calories", "2200 - 3000 Calories", "2000 - 2600 Calories")
+                           ))
+    
+    
+  })
   
   
 
