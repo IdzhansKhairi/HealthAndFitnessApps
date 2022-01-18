@@ -4,6 +4,7 @@ library(dplyr)
 library(ggplot2)
 library(DT)
 
+## -----------------------------------------------------------------------------------------------------------------------------
 ## Web Scrapping from a website collecting all list of foods in Malaysia and its calories
 link = "https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime"
 page = read_html(link)
@@ -36,6 +37,9 @@ food_amount <- food_amount[-c(1, 2, 3, 4, 19, 20, 21, 35, 36, 37, 42, 43, 44, 54
                               135, 138, 139, 140, 147, 148, 149, 165, 182, 187, 188, 189, 190, 191), ]
 
 Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIES = food_calories)
+## -----------------------------------------------------------------------------------------------------------------------------
+
+
 
 
 
@@ -43,7 +47,8 @@ Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIE
 
 shinyServer(function(input, output, session) {
 
-  ## This will be the user's info in Info Box
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  ## These code here will be the user's info in Info Box such as name, gender, height, weight, age and BMI of the current user
   output$usersName <- renderInfoBox({
     infoBox(
       "User's Name", input$userName, icon = icon("user"), color = "blue", fill = TRUE
@@ -92,8 +97,8 @@ shinyServer(function(input, output, session) {
       "User's BMI", sprintf(BMI, fmt = '%#.2f'), status, icon = icon("balance-scale"), color = colourChoosen, fill=TRUE
     )
   })
-  
-  ## Code here will display the things in first panel box
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  ## Code here will display the food consumed today by the user in first panel box
   # Make reactive to store values
   food_table <- shiny::reactiveValues()
   
@@ -116,8 +121,9 @@ shinyServer(function(input, output, session) {
                                        rownames=FALSE, options = list(pageLength = 5))
   
   
+  ## --------------------------------------------------------------------------------------------------------------------------
+  ## Code here will display calories needed. If gender chosen is men or woman and how many and percent users consumed today.
   
-  ## Code here will display calories needed. If gender chosen is men or woman
   output$gendercalory <- renderText({
     
     genderChoose <- switch(input$userGender, 
@@ -135,9 +141,8 @@ shinyServer(function(input, output, session) {
                              Age_Range = c("19 - 30 Years", "31 - 59 Years", "60+ Years"),
                              Calories_Needed = c("2400 - 3000 Calories", "2200 - 3000 Calories", "2000 - 2600 Calories")
                            ))
-    
-    
   })
+  ## ---------------------------------------------------------------------------------------------------------------------------
   
   
 
