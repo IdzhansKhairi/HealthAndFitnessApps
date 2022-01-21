@@ -37,6 +37,7 @@ food_amount <- food_amount[-c(1, 2, 3, 4, 19, 20, 21, 35, 36, 37, 42, 43, 44, 54
                               135, 138, 139, 140, 147, 148, 149, 165, 182, 187, 188, 189, 190, 191), ]
 
 Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIES = food_calories)
+
 ## -----------------------------------------------------------------------------------------------------------------------------
 
 
@@ -99,27 +100,29 @@ shinyServer(function(input, output, session) {
   })
   ## ---------------------------------------------------------------------------------------------------------------------------
   ## Code here will display the food consumed today by the user in first panel box
-  # Make reactive to store values
-  food_table <- shiny::reactiveValues()
   
-  #Get singular food
-  food_df <- eventReactive(input$foodChoosen, {
+  foodList <- shiny::reactiveValues()
+  foodList <- data.frame(FOOD = c("Test"), AMOUNT = c(0), CALORIES = c(0))
+  
     
-    food_df <- Food_Calories_List[Food_Calories_List$FOOD == input$foodChoosen, "FOOD"] 
+  #reactiveValues(foodList)
+  
+  observeEvent(input$submitFood, {
+    
+    foods <- input$foodChoosen
+    foods <- filter(Food_Calories_List, Food_Calories_List$FOOD == foods)
+    
+    tables = rbind(foodList, foods)
+    
+    foodList(tables)
     
   })
   
-  update <- observeEvent(input$removeFood, {
-    isolate(food_table$Food_Calories_List <- food_table$Food_Calories_List[-(nrow(food_table$Food_Calories_List)), ])
+  output$food_table <- renderDT({
+    
+    datatable(foodList, options = list(dom = 'tables'))
+    
   })
-  
-  update <- observeEvent(input$submitFood, {
-    isolate(food_table$Food_Calories_List[nrow(food_table$Food_Calories_List) + 1,] )
-  })
-  
-  output$food_table <- DT::renderDataTable(Food_Calories_List,  
-                                       rownames=FALSE, options = list(pageLength = 5))
-  
   
   ## --------------------------------------------------------------------------------------------------------------------------
   ## Code here will display calories needed. If gender chosen is men or woman and how many and percent users consumed today.

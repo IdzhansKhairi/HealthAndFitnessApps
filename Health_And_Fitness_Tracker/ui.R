@@ -63,7 +63,7 @@ shinyUI(fluidPage(
         
         menuItem("Food Taken", tabName = "widgets", icon = icon("utensils"),
                  
-                 selectizeInput("foodChoosen", "Food Taken Today : ", Food_Calories_List$FOOD, selected = NULL, multiple = FALSE,
+                 selectizeInput("foodChoosen", label = "Food Taken Today : ", choices = unique(Food_Calories_List$FOOD), selected = NULL, multiple = FALSE,
                                 options = list(placeholder = "Type to search", onInitialize = "")),
                  actionButton("submitFood", "Add Food"),
                  actionButton("removeFood", "Remove Food")),
@@ -111,6 +111,10 @@ shinyUI(fluidPage(
                    div(dataTableOutput("caloryneed"), style = "font-size: 80%")),
           
           tabPanel("Percentage Calories Consumed", plotOutput("plot_caloriesPercent"))
+        ),
+        
+        tabBox(
+          title = tagList(shiny::icon("fire"), "Calories Burned")
         )
         
       )
