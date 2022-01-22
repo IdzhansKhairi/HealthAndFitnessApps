@@ -115,7 +115,10 @@ shinyUI(fluidPage(
         ),
         
         tabBox(
-          title = tagList(shiny::icon("fire"), "Calories Burned")
+          title = tagList(shiny::icon("fire"), "Calories Burned"),
+          tabPanel(title = "Exercise Table",
+                   div(DT::DTOutput("exercise_table"), style = "font-size: 80%;")),
+          tabPanel(title = "Calories Burned")
         )
         
       )

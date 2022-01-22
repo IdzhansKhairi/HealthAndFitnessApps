@@ -40,7 +40,10 @@ Food_Calories_List <- data.frame(FOOD = food_name, AMOUNT = food_amount, CALORIE
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 
-
+workoutdone <- data.frame(
+  EXERCISE = c("Watching TV", "Reading Book", "Walking", "Jogging", "Playing Sports", "Workout"),
+  CALORIES_BURNED_PER_MINUTE = c(1.17, 1.40, 6.67, 11.67, 10.92, 13.83)
+)
 
 
 
@@ -192,7 +195,15 @@ shinyServer(function(input, output, session) {
     
   })
   ## ---------------------------------------------------------------------------------------------------------------------------
+  # Code here will show Amount of exercise
   
+  output$exercise_table <- renderDataTable({
+    
+    workoutdone
+    
+  })
+  
+  ## ---------------------------------------------------------------------------------------------------------------------------
   
 
 })
