@@ -63,10 +63,10 @@ shinyUI(fluidPage(
         
         menuItem("Food Taken", tabName = "widgets", icon = icon("utensils"),
                  
-                 selectizeInput("foodChoosen", label = "Food Taken Today : ", choices = unique(Food_Calories_List$FOOD), selected = NULL, multiple = FALSE,
-                                options = list(placeholder = "Type to search", onInitialize = "")),
-                 actionButton("submitFood", "Add Food"),
-                 actionButton("removeFood", "Remove Food")),
+                 numericInput("totalCalories", "Total Calories Consumed (Refer Table) : ", value = 0, min = 0, max = 100000, step = 1),
+                 submitButton(text = "Apply Changes")
+                 
+                ),
         
         menuItem("Acivitiy Done", tabName = "activity", icon = icon("running"),
                  
@@ -103,12 +103,13 @@ shinyUI(fluidPage(
         
         tabBox(
           title = tagList(shiny::icon("hamburger"), "Calories Consumed"),
-          tabPanel(title = "Food Consumed",
+          tabPanel(title = "Food List Table",
                    div(DT::DTOutput("food_table"), style = "font-size: 80%;")),
           
           tabPanel(title = "Calories Consumed",
                    strong(h2(textOutput("gendercalory"))),
-                   div(dataTableOutput("caloryneed"), style = "font-size: 80%")),
+                   div(dataTableOutput("caloryneed"), style = "font-size: 80%"),
+                   h4(textOutput("dailycalorie"))),
           
           tabPanel("Percentage Calories Consumed", plotOutput("plot_caloriesPercent"))
         ),

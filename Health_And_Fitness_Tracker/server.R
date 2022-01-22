@@ -99,28 +99,11 @@ shinyServer(function(input, output, session) {
     )
   })
   ## ---------------------------------------------------------------------------------------------------------------------------
-  ## Code here will display the food consumed today by the user in first panel box
+  ## Code here will display the food list in first panel box
   
-  foodList <- shiny::reactiveValues()
-  foodList <- data.frame(FOOD = c("Test"), AMOUNT = c(0), CALORIES = c(0))
-  
+  output$food_table <- renderDataTable({
     
-  #reactiveValues(foodList)
-  
-  observeEvent(input$submitFood, {
-    
-    foods <- input$foodChoosen
-    foods <- filter(Food_Calories_List, Food_Calories_List$FOOD == foods)
-    
-    tables = rbind(foodList, foods)
-    
-    foodList(tables)
-    
-  })
-  
-  output$food_table <- renderDT({
-    
-    datatable(foodList, options = list(dom = 'tables'))
+    Food_Calories_List
     
   })
   
@@ -136,14 +119,77 @@ shinyServer(function(input, output, session) {
   output$caloryneed <- renderDataTable({
     
     genderChoose <- switch(input$userGender,
-                           male = data.frame(
+                           female = data.frame(
                              Age_Range = c("19 - 30 Years", "31 - 59 Years", "60+ Years"),
                              Calories_Needed = c("2000 - 2400 Calories", "1800 - 2200 Calories", "1600 - 2000 Calories")
                            ),
-                           female = data.frame(
+                           male = data.frame(
                              Age_Range = c("19 - 30 Years", "31 - 59 Years", "60+ Years"),
                              Calories_Needed = c("2400 - 3000 Calories", "2200 - 3000 Calories", "2000 - 2600 Calories")
                            ))
+  })
+  
+  output$dailycalorie <- renderText({
+    yourAge <- input$userAge
+    
+    yourTodayCalorie <- input$totalCalories
+    
+    yourGender <- switch(input$userGender,
+                         male = "Male",
+                         female = "Female")
+    
+    if(yourGender == "Male"){
+      
+      if(yourAge > 18 && yourAge < 31){
+        maxCal = 3000
+        minCal = 2400
+      }else if(yourAge > 30 && yourAge < 60){
+        maxCal = 3000
+        minCal = 2200
+      }else{
+        maxCal = 2600
+        minCal = 2000
+      }
+      
+      
+    }else if(yourGender == "Female"){
+      
+      if(yourAge > 18 && yourAge < 31){
+        maxCal = 2400
+        minCal = 2000
+      }else if(yourAge > 30 && yourAge < 60){
+        maxCal = 2200
+        minCal = 1800
+      }else{
+        maxCal = 2000
+        minCal = 1600
+      }
+      
+    }
+    
+    if(yourTodayCalorie > maxCal){
+      
+      percentCal <- ((yourTodayCalorie - maxCal)/maxCal) * 100
+      differCal <- yourTodayCalorie - maxCal
+      
+      print(paste("You consumed more than suggested daily calorie which is",
+                  sprintf(percentCal, fmt = '%#.2f'), "% more. Hopefully you do extra exercise to burn execessive calories."))
+      
+      
+    }else if(yourTodayCalorie < minCal){
+      
+      percentCal <- ((minCal - yourTodayCalorie)/minCal) * 100
+      differCal <- minCal - yourTodayCalorie
+      
+      print(paste("You consumed less than suggested daily calories which is",
+                  sprintf(percentCal, fmt = '%#.2f'), "% less. Eat more food to stay healthy and energetic"))
+      
+    }else{
+      
+      print("The amount of calories you consumed today is normal. KEEP UP THE GOOD WORK!!!")
+      
+    }
+    
   })
   ## ---------------------------------------------------------------------------------------------------------------------------
   
