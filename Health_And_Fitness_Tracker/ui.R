@@ -76,7 +76,7 @@ shinyUI(fluidPage(
                    strong(h4(textOutput("dailycalorie")))),
           
           tabPanel("Calories Consumed Graph", 
-                   plotOutput("plot_caloriesPercent"))
+                   plotOutput("plot_caloriesTaken"))
         ),
         
         tabBox(

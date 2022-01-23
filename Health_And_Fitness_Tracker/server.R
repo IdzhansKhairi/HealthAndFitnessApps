@@ -3,8 +3,7 @@ library(rvest)
 library(dplyr)
 library(ggplot2)
 library(DT)
-
-
+library(hrbrthemes)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 ## Web Scrapping from a website collecting all list of foods in Malaysia and its calories
@@ -47,8 +46,21 @@ workoutdone <- data.frame(
   CALORIES_BURNED_PER_MINUTE = c(1.17, 1.40, 6.67, 11.67, 10.92, 13.83)
 )
 
+testCalories <- data.frame(
+  DAY = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"),
+  CALORIES = c(1400, 3000, 3500, 2600, 4000, 2900, 2900)
+)
+
+testBurned <- data.frame(
+  DAY = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"),
+  BURNED = c(500, 480, 200, 900, 550, 140, 700)
+)
 
 
+testWeight <- data.frame(
+  DAY = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"),
+  WEIGHT = c(90, 92, 89, 88, 85, 79, 85)
+)
 
 
 shinyServer(function(input, output, session) {
@@ -196,6 +208,23 @@ shinyServer(function(input, output, session) {
     }
     
   })
+  
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  # Code here will plot latest 7 days of users Food Consumption calories.
+  
+  output$plot_caloriesTaken <- renderPlot({
+    
+    # To make sure the day is in it's order and not alphabetical order
+    testCalories$DAY <- factor(testCalories$DAY, levels=unique(testCalories$DAY)) 
+    
+    ggplot(testCalories, aes(x = DAY, y = CALORIES, group = 1)) +
+      geom_point() +
+      geom_line(color = "#00FF00", size = 1) +
+      theme_ipsum() +
+      ggtitle("Last 7 Days of Total Calories Consumed")
+    
+  })
+  
   ## ---------------------------------------------------------------------------------------------------------------------------
   # Code here will show List of exercise and it's calories burned per minute
   
@@ -253,9 +282,62 @@ shinyServer(function(input, output, session) {
     
   })
   
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  # This code here will show latest 7 days of users calories burned by the exercise they done
   
+  output$plot_caloriesBurned <- renderPlot({
+    
+    # To make sure the day is in it's order and not alphabetical order
+    testBurned$DAY <- factor(testBurned$DAY, levels=unique(testBurned$DAY)) 
+    
+    ggplot(testBurned, aes(x = DAY, y = BURNED, group = 1)) +
+      geom_point() +
+      geom_line(color = "#FF0000", size = 1) +
+      theme_ipsum() +
+      ggtitle("Last 7 Days of Total Calories Burned")
+    
+  })
   
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  # This code here will show calories consumed, calories burned and users weight of the last 7 days
   
+  output$progress <- renderPlot({
+    
+    totalData <- mutate(testCalories, BURNED = testBurned$BURNED, WEIGHT = testWeight$WEIGHT)
+    
+    # To make sure the day is in it's order and not alphabetical order
+    totalData$DAY <- factor(totalData$DAY, levels=unique(totalData$DAY))
+    
+    ggplot(totalData, aes(x = DAY, group = 3 )) +
+      geom_point(aes(y = CALORIES)) +
+      geom_point(aes(y = BURNED)) +
+      geom_point(aes(y = WEIGHT * 40)) +
+      geom_line(aes(y = CALORIES), color = "green", size = 1, linetype = 1) +
+      geom_line(aes(y = BURNED), color = "red", size = 1, linetype = 2) +
+      geom_line(aes(y = WEIGHT * 40), color = "blue", size = 1, linetype = 3) +
+      
+      scale_linetype(' ') +
+      
+      scale_y_continuous(name = "Calories",
+        
+        sec.axis = sec_axis(~./40, name = "Weight (kg)")
+        
+      ) +
+      theme(
+        legend.position = c(1, 1),
+        legend.justification = c(1, 1),
+        legend.background = element_rect(fill = "white", colour = "black"),
+        plot.title = element_text(
+        size = rel(1.2), lineheight = .9,
+        family = "Calibri", face = "bold", colour = "brown"
+      )) + 
+      ggtitle("Your Progress Overall Graph")
+    
+    
+    
+  })
+  
+  ## ---------------------------------------------------------------------------------------------------------------------------
   
 
 })
