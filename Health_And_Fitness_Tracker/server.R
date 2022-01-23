@@ -106,11 +106,11 @@ shinyServer(function(input, output, session) {
   ## ---------------------------------------------------------------------------------------------------------------------------
   ## Code here will display the food list in first panel box
   
-  output$food_table <- renderDataTable({
+  output$food_table <- renderDataTable(
     
-    Food_Calories_List
+    Food_Calories_List, options = list(pageLength = 6)
     
-  })
+  )
   
   ## --------------------------------------------------------------------------------------------------------------------------
   ## Code here will display calories needed. If gender chosen is men or woman and how many and percent users consumed today.
@@ -191,21 +191,71 @@ shinyServer(function(input, output, session) {
       
     }else{
       
-      print("The amount of calories you consumed today is normal. KEEP UP THE GOOD WORK!!!")
+      print("The amount of calories you consumed today is normal. KEEP UP THE GOOD WORK!!!") 
       
     }
     
   })
   ## ---------------------------------------------------------------------------------------------------------------------------
-  # Code here will show Amount of exercise
+  # Code here will show List of exercise and it's calories burned per minute
   
-  output$exercise_table <- renderDataTable({
+  output$exercise_table <- renderDataTable(
     
-    workoutdone
+    workoutdone, options = list(pageLength = 6)
+    
+  )
+  
+  ## ---------------------------------------------------------------------------------------------------------------------------
+  # Code here will show what exercise that you have done and how many calories should be burned
+  
+  output$exerciseImg <- renderUI({
+    
+    outfile <- switch(input$activityChoose,
+                  tv = 'tv.gif',
+                  read = 'read.gif',
+                  walk = 'walk.gif',
+                  jog = 'jog.gif',
+                  sports = 'sports.gif',
+                  workout = 'workout.gif' 
+                 )
+    
+    tags$img(src = outfile, style="display: block; margin-left: auto; margin-right: auto;", width = "200px", height = "200px")
+  })
+  
+  output$calBurnedText <- renderText({
+    
+    duration <- input$activityDuration
+    
+    
+    calBurn <- switch(input$activityChoose,
+                      tv = duration * 1.17,
+                      read = duration * 1.40,
+                      walk = duration * 6.67,
+                      jog = duration * 11.67,
+                      sports = duration * 10.92,
+                      workout = duration * 13.83)
+    
+    text <- switch(input$activityChoose,
+           tv = paste("The activity you has done today is WATCHING TELEVISION, and the duration of your activity is", duration, "minutes.",
+                      "The approximate amount of calories burned by you today is", calBurn, "calories."),
+           read = paste("The activity you has done today is READING SOME BOOKS and the duration of your activity is", duration, "minutes",
+                        "The approximate amount of calories burned by you today is", calBurn, "calories."),
+           walk = paste("The activity you has done today is WALKING and the duration of your activity is", duration, "minutes",
+                        "The approximateamount of calories burned by you today is", calBurn, "calories."),
+           jog = paste("The activity you has done today is JOGGING and the duration of your activity is", duration, "minutes",
+                       "The approximate amount of calories burned by you today is", calBurn, "calories."),
+           sports = paste("The activity you has done today is PLAYING SPORTS and the duration of your activity is", duration, "minutes",
+                          "The approximate amount of calories burned by you today is", calBurn, "calories"),
+           workout = paste("The activity you has done today is DOING SOME WORKOUT and the duration of your activity is", duration, "minutes.",
+                           "The approximate amount of calories burned by you today is", calBurn, "calories.")
+           )
+    
     
   })
   
-  ## ---------------------------------------------------------------------------------------------------------------------------
+  
+  
+  
   
 
 })
