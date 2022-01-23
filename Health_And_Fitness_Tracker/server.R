@@ -4,6 +4,8 @@ library(dplyr)
 library(ggplot2)
 library(DT)
 
+
+
 ## -----------------------------------------------------------------------------------------------------------------------------
 ## Web Scrapping from a website collecting all list of foods in Malaysia and its calories
 link = "https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime"
