@@ -51,11 +51,7 @@ workoutdone <- data.frame(
 
 
 shinyServer(function(input, output, session) {
-<<<<<<< HEAD
- 
-=======
-  
->>>>>>> 936bc965153bd4ff1b67f106dcd41ef7852e06ad
+
   ## ---------------------------------------------------------------------------------------------------------------------------
   ## These code here will be the user's info in Info Box such as name, gender, height, weight, age and BMI of the current user
   output$usersName <- renderInfoBox({
