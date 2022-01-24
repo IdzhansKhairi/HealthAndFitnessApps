@@ -323,6 +323,7 @@ shinyServer(function(input, output, session) {
         sec.axis = sec_axis(~./40, name = "Weight (kg)")
         
       ) +
+      theme_ipsum() +
       theme(
         legend.position = c(1, 1),
         legend.justification = c(1, 1),
