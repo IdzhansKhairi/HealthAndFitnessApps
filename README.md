@@ -1,4 +1,4 @@
-# WIA1007 Shiny Project Group J (Joe who? Joe Mama)
+# WIA1007 Shiny Project Group J (JoJo's Bizarre Calorie )
 ### Project Title - Health and Fitness Tracker
 
 
