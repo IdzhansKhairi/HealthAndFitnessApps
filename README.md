@@ -1,4 +1,4 @@
-# WIA1007 Shiny Project Group 25
+# WIA1007 Shiny Project Group J (Joe who? Joe Mama)
 ### Project Title - Health and Fitness Tracker
 
 
@@ -13,25 +13,30 @@
 ---
 ## Some Description on project
 
-#### User input :
-Weight, height, age gender: to summarize user’s calorie needed in a day
+#### Personal Information :
+ - User can input weight, height, age and gender
+ - this will summarize user’s calories needed in a day
 
-#### Input meal: 
-to calculate calorie consumed
-Example: egg, 100g, 155 calories 
+#### Food taken: 
+- User can follow the table that will contain a lists of food
+- Once the users selected the food, they can input the amount of calories they consumed
+
+
+#### Activity Done :
+- the users will choose what type of activites they've done
+- To get how many calories burned
+- Example: jpgging for 30 minutes, 350 calories burned 
+- **Example shiny app : **https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
+
+
 
 #### **Example shiny app :**
 Have to find data to calculate calorie : https://shiny.rstudio.com/gallery/nutrition-calculator.html
 
-#### Sports :
-- What type of sport : running, walking, cycling 
-- To get how many calories burned
-- Example: running for 15 minutes,70 calories burned 
-- **Example shiny app : **https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
-
 
 _**The app need to able to collect data and summarize in a graph form :**_
 - Graphs of weight loss/gains
+- to monitor the how much calories the user has consumed
 
 ---
 
