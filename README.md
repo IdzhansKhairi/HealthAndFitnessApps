@@ -33,6 +33,7 @@
 - To get how many calories burned
 - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20burned.jpg)
 - Example: jogging for 30 minutes, 350 calories burned 
+- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Exercise%20List%20Table.jpg)
 - **Example shiny app :** https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
 
 
