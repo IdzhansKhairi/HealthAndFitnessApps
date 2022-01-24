@@ -32,8 +32,7 @@
 - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Activity%20Done.jpg)
 - To get how many calories burned
 - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20burned.jpg)
-- Example: jpgging for 30 minutes, 350 calories burned 
-- 
+- Example: jogging for 30 minutes, 350 calories burned 
 - **Example shiny app :** https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
 
 
