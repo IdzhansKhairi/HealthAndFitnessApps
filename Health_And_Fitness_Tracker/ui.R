@@ -41,7 +41,6 @@ shinyUI(fluidPage(
                  
                  sliderInput("activityDuration", "Time of Activity (Minutes) : ", 0, 240, 30),
                  submitButton(text = "Apply Changes"))
-        
       )
         
     ),

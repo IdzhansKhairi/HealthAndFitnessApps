@@ -64,7 +64,7 @@ testWeight <- data.frame(
 
 
 shinyServer(function(input, output, session) {
-
+ 
   ## ---------------------------------------------------------------------------------------------------------------------------
   ## These code here will be the user's info in Info Box such as name, gender, height, weight, age and BMI of the current user
   output$usersName <- renderInfoBox({
