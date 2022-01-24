@@ -6,6 +6,7 @@ library(DT)
 library(hrbrthemes)
 library(RSQLite)
 library(DBI)
+library(dbplyr)
 
 ## -----------------------------------------------------------------------------------------------------------------------------
 ## Web Scrapping from a website collecting all list of foods in Malaysia and its calories
@@ -229,7 +230,6 @@ shinyServer(function(input, output, session) {
     ggplot(totalData, aes(x = DATE, y = CALORIES, group = 1)) +
       geom_point() +
       geom_line(color = "#00FF00", size = 1) +
-      theme_ipsum() +
       ggtitle("Last 7 Days of Total Calories Consumed")
     
   })
@@ -316,7 +316,6 @@ shinyServer(function(input, output, session) {
     ggplot(totalData, aes(x = DATE, y = BURN, group = 1)) +
       geom_point() +
       geom_line(color = "#FF0000", size = 1) +
-      theme_ipsum() +
       ggtitle("Last 7 Days of Total Calories Burned")
     
   })
@@ -383,15 +382,6 @@ shinyServer(function(input, output, session) {
         sec.axis = sec_axis(~./40, name = "Weight (kg)")
         
       ) +
-      theme_ipsum() +
-      theme(
-        legend.position = c(1, 1),
-        legend.justification = c(1, 1),
-        legend.background = element_rect(fill = "white", colour = "black"),
-        plot.title = element_text(
-        size = rel(1.2), lineheight = .9,
-        family = "Calibri", face = "bold", colour = "brown"
-      )) + 
       ggtitle("Your Progress Overall Graph")
     
     

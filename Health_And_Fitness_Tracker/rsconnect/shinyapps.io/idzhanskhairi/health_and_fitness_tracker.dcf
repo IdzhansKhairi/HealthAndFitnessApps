@@ -4,8 +4,8 @@ username:
 account: idzhanskhairi
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
-appId: 5499644
-bundleId: 5502930
+appId: 5499859
+bundleId: 5503009
 url: https://idzhanskhairi.shinyapps.io/health_and_fitness_tracker/
-when: 1643047672.78663
-lastSyncTime: 1643047672.78663
+when: 1643049113.85901
+lastSyncTime: 1643049113.85901
