@@ -15,6 +15,7 @@
 
 #### Personal Information :
  - User can input weight, height, age and gender
+ - https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/personal%20information.jpg?raw=true
  - this will summarize user’s calories needed in a day
 
 #### Food taken: 
