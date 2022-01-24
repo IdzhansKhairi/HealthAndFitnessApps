@@ -48,14 +48,10 @@ workoutdone <- data.frame(
   CALORIES_BURNED_PER_MINUTE = c(1.17, 1.40, 6.67, 11.67, 10.92, 13.83)
 )
 
-con <- dbConnect(RSQLite::SQLite(), "totalData.sqlite")
-data <- tbl(con,"data")
-temp <- collect(data)
-totalData <- tail(temp,n=7)
 
 
 shinyServer(function(input, output, session) {
-
+  
   ## ---------------------------------------------------------------------------------------------------------------------------
   ## These code here will be the user's info in Info Box such as name, gender, height, weight, age and BMI of the current user
   output$usersName <- renderInfoBox({
@@ -63,6 +59,7 @@ shinyServer(function(input, output, session) {
       "User's Name", input$userName, icon = icon("user"), color = "blue", fill = TRUE
     )
   })
+  
   output$usersWeight <- renderInfoBox({
     infoBox(
       "User's Weight", paste(input$userWeight, "KG"), icon = icon("weight"), color = "purple", fill = TRUE
@@ -200,10 +197,31 @@ shinyServer(function(input, output, session) {
     
   })
   
+  #---------------------------------------------------------------
+  
+  con <- dbConnect(RSQLite::SQLite(), "totalData.sqlite")
+  data <- tbl(con,"data")
+  temp <- collect(data)
+  
+
   ## ---------------------------------------------------------------------------------------------------------------------------
   # Code here will plot latest 7 days of users Food Consumption calories.
   
   output$plot_caloriesTaken <- renderPlot({
+    
+    name <- input$userName
+    
+    if(name =="Your Name Here"){
+      
+      name <- "Afda"
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+    }else{
+      
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+      
+    }
     
     # To make sure the day is in it's order and not alphabetical order
     #testCalories$DAY <- factor(testCalories$DAY, levels=unique(testCalories$DAY)) 
@@ -278,6 +296,20 @@ shinyServer(function(input, output, session) {
   
   output$plot_caloriesBurned <- renderPlot({
     
+    name <- input$userName
+    
+    if(name =="Your Name Here"){
+      
+      name <- "Afda"
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+    }else{
+      
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+      
+    }
+    
     # To make sure the day is in it's order and not alphabetical order
     #testBurned$DAY <- factor(testBurned$DAY, levels=unique(testBurned$DAY)) 
     
@@ -291,8 +323,45 @@ shinyServer(function(input, output, session) {
   
   ## ---------------------------------------------------------------------------------------------------------------------------
   # This code here will show calories consumed, calories burned and users weight of the last 7 days
-  
+
   output$progress <- renderPlot({
+    
+    name <- input$userName
+    
+    totalCalories<- input$totalCalories
+    
+    weight <- input$userWeight
+    
+    duration <-input$activityDuration
+
+    calBurn <- switch(input$activityChoose,
+                      tv = duration * 1.17,
+                      read = duration * 1.40,
+                      walk = duration * 6.67,
+                      jog = duration * 11.67,
+                      sports = duration * 10.92,
+                      workout = duration * 13.83)
+    
+    print(calBurn)
+    
+    if(totalCalories != 0 && calBurn != 35.1){
+      
+      dbExecute(con, "INSERT INTO data (NAME,CALORIES,BURN,WEIGHT,DATE)VALUES(?,?,?,?,DATE('now','localtime'));",list(name, totalCalories,calBurn,weight))
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+    }
+    
+    if(name =="Your Name Here"){
+      
+      name <- "Afda"
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+    }else{
+      
+      temp2 <- filter(temp,NAME == name)
+      totalData <- tail(temp2,n=7)
+      
+    }
     
     #totalData <- mutate(testCalories, BURNED = testBurned$BURNED, WEIGHT = testWeight$WEIGHT)
     
