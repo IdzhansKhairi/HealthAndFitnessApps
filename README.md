@@ -26,7 +26,7 @@
 - the users will choose what type of activites they've done
 - To get how many calories burned
 - Example: jpgging for 30 minutes, 350 calories burned 
-- **Example shiny app : **https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
+- **Example shiny app :** https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
 
 
 
