@@ -1,0 +1,50 @@
+Health and Fitness Tracker
+Prepared by Group J (JoJo's Bizzarre Calorie)
+
+
+========================================================
+author: Group members:  
+Luqman Hakim(leader)  
+Muhammad Idzhans Khairi  
+Afiq Danish  
+Pendar Tabatabaeemoshiri
+
+
+The Interface of the Application
+========================================================
+
+![](https://i.ibb.co/fqgMMpn/Health-And-Fitness-Tracker.jpg)
+
+The interface will have 4 components -
+> 1. User Personal Information 
+> 2. Table of Calories Consumed
+> 3. Table of Calories Burned
+> 4. Graph progress of calories consumed/burned
+
+User Information
+
+========================================================
+
+
+![](https://i.ibb.co/P5msBZb/image-2022-01-24-145949.png)
+![](https://i.ibb.co/vL9jnxz/image-2022-01-24-150551.png)
+![](https://i.ibb.co/7pPfqxR/image-2022-01-24-150407.png)
+
+
+Table for Calorie Count
+========================================================
+
+![](https://i.ibb.co/xhF3LS1/Calorie-consumed-table.jpg)
+![](https://i.ibb.co/WkQt43t/Calorie-burned-table.jpg)
+
+
+
+
+Progress Graph
+========================================================
+
+![](https://i.ibb.co/kcsVmYr/image-2022-01-24-152102.png)
+
+The github [repository](https://github.com/IdzhansKhairi/HealthAndFitnessApps.git)  
+link to the shiny application [shiny](https://idzhanskhairi.shinyapps.io/health_and_fitness_tracker/?_ga=2.95788444.1874688403.1643046086-1016606298.1643046086)
+
