@@ -1,7 +1,6 @@
 # WIA1007 Shiny Project Group J (JoJo's Bizarre Calorie )
 ### Project Title - Health and Fitness Tracker
 
-
 ### Members of the team :
 |         **NAME**          | **MATRIC NUMBER** |
 |---------------------------|-------------------|
@@ -10,49 +9,34 @@
 | AFIQ DANISH BIN AFFINDI   |      U2001419     |
 | PENDAR TABATABAEEMOSHIRI  |      S2029817     |
 
----
-## Some Description on project
-
-#### Personal Information :
- - User can input weight, height, age and gender
- - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/personal%20information.jpg)
- - this will summarize user’s calories needed in a day
- - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/dashboard.jpg)
- - ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calorie%20Requirement%20.jpg)
-
-#### Food taken: 
-- User can follow the table that will contain a lists of food
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/foodlist%20table.jpg)
-- Once the users selected the food, they can input the amount of calories they consumed
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/food%20taken.jpg)
-
-
-#### Activity Done :
-- the users will choose what type of activites they've done
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Activity%20Done.jpg)
-- To get how many calories burned
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20burned.jpg)
-- Example: jogging for 30 minutes, 350 calories burned 
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Exercise%20List%20Table.jpg)
-- **Example shiny app :** https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/
 
 
 
-#### **Example shiny app :**
-Have to find data to calculate calorie : https://shiny.rstudio.com/gallery/nutrition-calculator.html
 
 
-_**The app need to able to collect data and summarize in a graph form :**_
-- Graphs of weight loss/gains
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20Burned%20Graph.jpg)
-- to monitor the how much calories the user has consumed
-- ![](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20Consumed%20Graph.jpg)
----
+## How to use the application :
+The user can put their Personal Information into the application at the sidebar such as their name, weight, height, age and gender. The only information that will be saved to the database to show your graph is your weight. Your information then will be shown at the small boxes which includes your BMI status. Your BMI status will not only showing numbers of your BMI result but also changing colour and status depending on adult BMI.
 
-#### The data is based on this website :
-https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime
+![personalInfo](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/personal%20information.jpg) 
+![summarizeInfo](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/dashboard.jpg)
 
-#### Amount Calorie needed
-https://www.healthline.com/nutrition/how-many-calories-per-day#average-needs
+
+Then, users can put the total amount of calories they consumed today by refering the food table on the tab panel. The food table consist of list of Malaysian foods based on a Malaysian Food Calories website [here](https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime). The user need to calculate the total calory they consumed and put it as input. The application will then show a table of daily calories requirement depending on your gender and will tell you how many percent did you lack of calories or how many percent of excessive calories taken by you. The 3rd tab will show your graph of progress of the last 7 days on the total calories taken by you.
+
+![caloryTaken](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/food%20taken.jpg)
+![foodTable](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/foodlist%20table.jpg)
+![caloriesNeeded](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calorie%20Requirement%20.jpg)
+![caloriesConsumedGraph](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20Consumed%20Graph.jpg)
+
+
+Next, the user will input the type of activities done by them on a particular day and the duration of their activity at minimum 0 minutes and at maximum 240 minutes (2 Hours). There's a table that will show how many calories will be burned in one minute based on the activity done by you. In the same box, there's a tab that will show you, based on your activity and duration, how many calories should be burned approximately by you. The 3rd tab will show your graph of progress of the last 7 day on the total calories burned by you. More information can be found in this [link](https://www.healthline.com/nutrition/how-many-calories-per-day#average-needs).
+
+![activityType](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Activity%20Done.jpg)
+![calBurnTable](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Exercise%20List%20Table.jpg)
+![calBurned](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20burned.jpg)
+![caloriesBurnedGraph](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20Burned%20Graph.jpg)
+
+
+Lastly, there's a line graph that will show you the summary of your overall progress. It will show you your weight, calories taken and calories burned progress.
 
 
