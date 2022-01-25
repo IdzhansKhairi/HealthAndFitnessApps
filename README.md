@@ -9,7 +9,8 @@
 | AFIQ DANISH BIN AFFINDI   |      U2001419     |
 | PENDAR TABATABAEEMOSHIRI  |      S2029817     |
 
-
+- Click [here](https://idzhanskhairi.shinyapps.io/health_and_fitness_tracker/?_ga=2.95788444.1874688403.1643046086-1016606298.1643046086) to access to the application.
+- Click [here](http://rpubs.com/LuqmanHakimBinMdShani/GroupJslides) to access to our R Presenter at rpubs.com.
 
 
 
@@ -37,6 +38,7 @@ Next, the user will input the type of activities done by them on a particular da
 ![caloriesBurnedGraph](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Calories%20Burned%20Graph.jpg)
 
 
-Lastly, there's a line graph that will show you the summary of your overall progress. It will show you your weight, calories taken and calories burned progress.
+Lastly, there's a line graph that will show you the summary of your overall progress. It will show you your weight, calories taken and calories burned progress. The blue line indicates your weight progress which will refering your right side of y-axis. The green line indicates the total of calories that you consumed on that day and the red line indicates the total of calories burned by you. Both of this line will be refering the left side of the y-axis. The x-axis will only show you the dates.
 
+![progress](https://github.com/IdzhansKhairi/HealthAndFitnessApps/blob/main/Media/Data%20Science%20total%20Progress%20Graph%20pic.png)
 
