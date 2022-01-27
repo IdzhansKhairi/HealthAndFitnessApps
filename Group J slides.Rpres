@@ -1,49 +1,72 @@
-Health and Fitness Tracker
-Prepared by Group J (JoJo's Bizzarre Calorie)
 
 
+Health and Fitness Tracker 
 ========================================================
+
+Prepared by Group J (JoJO's Bizzare Calorie)  
+Lecturer: DR. SALIMAH BINTI MOKHTAR  
 author: Group members:  
 Luqman Hakim(leader)  
 Muhammad Idzhans Khairi  
 Afiq Danish  
-Pendar Tabatabaeemoshiri
+Pendar Tabatabaeemoshiri  
+
+The github [repository](https://github.com/IdzhansKhairi/HealthAndFitnessApps.git)  
+link to the shiny application [shiny](https://idzhanskhairi.shinyapps.io/health_and_fitness_tracker/?_ga=2.95788444.1874688403.1643046086-1016606298.1643046086)
 
 
-The Interface of the Application
+
+Introduction
+========================================================
+From the group discussion, we have found some questions that will help tackling data science problem for health and fitness.
+
+- What calories do I need in a day to be healthy?
+- How many calories have i burned today?
+- Much calories does this food has?
+- I don't see progress in my fitness journey, what did I do wrong?
+
+Stakeholders
+
+- General public  
+- Athletes  
+- Malaysians
+
+Data Science Process
+========================================================
+
+
+> the datasets we found for malaysian food has everything about malaysian food  
+Link to the [datasets](https://health.family.my/health-facts/malaysian-food-calories-breakfast-teatime)
+
+> Our group have taken the approach of finding references of similar shiny apps.This way it can help in reducing the time taken to finish our Application  
+  
+> The shiny app we took inspiration from:  
+[nutrition calculator](https://shiny.rstudio.com/gallery/nutrition-calculator.html)  
+[Calorie Burner](https://rstudio-pubs-static.s3.amazonaws.com/53824_d202065774e24d0da81623d7e74125c8.html#/)
+
+
+
+
+Data set Description
+========================================================
+Nutrition 
+> - It has list of food list
+> - The weight of the food  
+> - How much calories it has per weight of food
+
+Activity
+> - type of sports 
+> - time taken while doing the activities
+> - calories burned per minute based on type of sport
+
+
+our Shiny App Demo
 ========================================================
 
 ![](https://i.ibb.co/fqgMMpn/Health-And-Fitness-Tracker.jpg)
-
 The interface will have 4 components -
 > 1. User Personal Information 
 > 2. Table of Calories Consumed
 > 3. Table of Calories Burned
 > 4. Graph progress of calories consumed/burned
-
-User Information
-========================================================
-
-
-![](https://i.ibb.co/P5msBZb/image-2022-01-24-145949.png)
-![](https://i.ibb.co/vL9jnxz/image-2022-01-24-150551.png)
-![](https://i.ibb.co/7pPfqxR/image-2022-01-24-150407.png)
-
-
-Table for Calorie Count
-========================================================
-
-![](https://i.ibb.co/xhF3LS1/Calorie-consumed-table.jpg)
-![](https://i.ibb.co/WkQt43t/Calorie-burned-table.jpg)
-
-
-
-
-Progress Graph
-========================================================
-
-![](https://i.ibb.co/kcsVmYr/image-2022-01-24-152102.png)
-
-The github [repository](https://github.com/IdzhansKhairi/HealthAndFitnessApps.git)  
-link to the shiny application [shiny](https://idzhanskhairi.shinyapps.io/health_and_fitness_tracker/?_ga=2.95788444.1874688403.1643046086-1016606298.1643046086)
 
